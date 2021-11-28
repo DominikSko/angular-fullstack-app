@@ -1,4 +1,5 @@
 const express = require('express'); // import express
+const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
@@ -17,6 +18,7 @@ mongoose.connect('mongodb+srv://Dominik:YUKd1LUDb6CkJgI2@cluster0.nd5gp.mongodb.
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+app.use('/images', express.static(path.join('backend/images')));
 
 app.use((req, res, next) => {  // funkcja zeby wylaczyc CORS czyli ze apka nie moze sie polaczyc z serverem localhost 3000 z 4000 np
   res.setHeader("Access-Control-Allow-Origin", "*");
