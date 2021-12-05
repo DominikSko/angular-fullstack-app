@@ -3,12 +3,16 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-const postRoutes = require('./routes/posts')
+const postRoutes = require('./routes/posts');
+const userRoutes = require('./routes/user');
 // database Dominik / YUKd1LUDb6CkJgI2
 
 const app = express();  // nasza apka express backend
 
-mongoose.connect('mongodb+srv://Dominik:YUKd1LUDb6CkJgI2@cluster0.nd5gp.mongodb.net/node-angular?retryWrites=true&w=majority')
+mongoose.connect(
+  "mongodb+srv://Dominik:" +
+  process.env.MONGO_ATLAS_PW +
+  "@cluster0.nd5gp.mongodb.net/node-angular?retryWrites=true&w=majority")
   .then(() => {
     console.log('Connected to database!');
   })
@@ -24,7 +28,7 @@ app.use((req, res, next) => {  // funkcja zeby wylaczyc CORS czyli ze apka nie m
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
     "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
   );
   res.setHeader(
     "Access-Control-Allow-Methods",
@@ -34,5 +38,6 @@ app.use((req, res, next) => {  // funkcja zeby wylaczyc CORS czyli ze apka nie m
 });
 
 app.use("/api/posts", postRoutes);
+app.use("/api/user", userRoutes);
 
 module.exports = app; // export this backend app
