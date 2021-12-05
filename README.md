@@ -27,3 +27,14 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
 to check database in windows terminal run : use node-angular (database name), show collections, db.posts.find()
+
+scripts before trying to deploy on heroku
+
+"scripts": {
+"ng": "ng",
+"start": "ng serve",
+"build": "ng build",
+"watch": "ng build --watch --configuration development",
+"test": "ng test",
+"start:server": "nodemon ./server.js"
+},

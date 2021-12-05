@@ -9,6 +9,11 @@ const userRoutes = require('./routes/user');
 
 const app = express();  // nasza apka express backend
 
+app.use("/", express.static(path.join(__dirname, "../dist/full-stack-mean-angular-app")));
+app.use((req, res, next) => {
+  res.sendFile(path.join(__dirname, "../dist/full-stack-mean-angular-app/index.html"));
+});
+
 mongoose.connect(
   "mongodb+srv://Dominik:" +
   process.env.MONGO_ATLAS_PW +
